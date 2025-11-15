@@ -48,3 +48,13 @@ $ yarn prisma studio
 # Rodar no navegador o localhost:PORT/docs
 
 ```
+
+## Dificuldades
+```bash
+- Implementar validação com o zod no controller de criação da coluna no quadro.
+  - Feito a validação mas tive que pesquisar na doc do NestJs
+
+- Fazer a configuração do prisma, tive que fazer algumas mudanças adicionar o -js no generator client no schema.prisma.
+
+- Configuração do docker, primeira vez que faço esse tipo de configuração, mas está configurado corretamente no mini-kanban.
+```
