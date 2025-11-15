@@ -9,18 +9,19 @@ import {
 } from "@nestjs/common";
 import { ApiBody, ApiResponse } from "@nestjs/swagger";
 import { ZodValidationPipe } from "@/_commons/pipes/zod-validation-pipe";
-import { BoardsService } from "./boards.service";
-import { BoardCreateRequest, boardCreateRequestSchema } from "./dto/requests";
+import { BoardsServices } from "./boards.services";
 import {
 	BoardColumnCreateRequest,
+	BoardCreateRequest,
 	boardColumnCreateRequestSchema,
-} from "./dto/requests/board-column-create-request";
+	boardCreateRequestSchema,
+} from "./dto/requests";
 import { BoardCreateResponse, BoardResponse } from "./dto/responses";
 import { BoardListResponse } from "./dto/responses/board-list-response";
 
 @Controller("/boards")
-export class BoardsController {
-	constructor(private boardsService: BoardsService) {}
+export class BoardsControllers {
+	constructor(private boardsService: BoardsServices) {}
 
 	@Post()
 	@HttpCode(201)
@@ -51,11 +52,13 @@ export class BoardsController {
 	@HttpCode(200)
 	@ApiResponse({ status: 200 })
 	@ApiBody({ type: BoardColumnCreateRequest })
-	@UsePipes(new ZodValidationPipe(boardColumnCreateRequestSchema))
 	async createColumn(
 		@Param("id") id: string,
-		@Body() body: BoardColumnCreateRequest,
+
+		@Body(new ZodValidationPipe(boardColumnCreateRequestSchema))
+		body: BoardColumnCreateRequest,
 	) {
+		console.log("body", body);
 		await this.boardsService.handleBoardColumnCreate(Number(id), body);
 	}
 }

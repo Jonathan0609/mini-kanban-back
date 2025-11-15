@@ -3,7 +3,7 @@ import { PrismaService } from "@/infra/database/prisma/prisma.service";
 import { ColumnTaskCreateRequest } from "./dto/requests/column-task-create";
 
 @Injectable()
-export class ColumnsService {
+export class ColumnsServices {
 	constructor(private prisma: PrismaService) {}
 
 	async handleColumnTaskCreate(id: number, body: ColumnTaskCreateRequest) {

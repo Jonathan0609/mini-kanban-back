@@ -9,7 +9,7 @@ import { BoardColumnCreateRequest } from "./dto/requests/board-column-create-req
 import { BoardResponse } from "./dto/responses";
 
 @Injectable()
-export class BoardsService {
+export class BoardsServices {
 	constructor(private prisma: PrismaService) {}
 
 	async handleBoardCreate(body: BoardCreateRequest) {

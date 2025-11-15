@@ -10,11 +10,11 @@ import {
 import { ApiBody, ApiResponse } from "@nestjs/swagger";
 import { TaskMoveRequest } from "./dto/requests/task-move-request";
 import { TaskUpdateRequest } from "./dto/requests/task-update-request";
-import { TasksService } from "./tasks.service";
+import { TasksServices } from "./tasks.services";
 
 @Controller("/tasks")
-export class TasksController {
-	constructor(private tasksService: TasksService) {}
+export class TasksControllers {
+	constructor(private tasksService: TasksServices) {}
 
 	@Put(":id")
 	@HttpCode(200)

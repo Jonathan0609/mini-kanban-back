@@ -4,7 +4,7 @@ import { TaskMoveRequest } from "./dto/requests/task-move-request";
 import { TaskUpdateRequest } from "./dto/requests/task-update-request";
 
 @Injectable()
-export class TasksService {
+export class TasksServices {
 	constructor(private prisma: PrismaService) {}
 
 	async handleTaskUpdate(id: number, body: TaskUpdateRequest) {

@@ -1,11 +1,11 @@
 import { Body, Controller, HttpCode, Param, Post } from "@nestjs/common";
 import { ApiBody, ApiResponse } from "@nestjs/swagger";
-import { ColumnsService } from "./columns.service";
+import { ColumnsServices } from "./columns.services";
 import { ColumnTaskCreateRequest } from "./dto/requests/column-task-create";
 
 @Controller("/columns")
-export class ColumnsController {
-	constructor(private columnsService: ColumnsService) {}
+export class ColumnsControllers {
+	constructor(private columnsService: ColumnsServices) {}
 
 	@Post(":id/tasks")
 	@HttpCode(200)
