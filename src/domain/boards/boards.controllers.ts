@@ -58,7 +58,6 @@ export class BoardsControllers {
 		@Body(new ZodValidationPipe(boardColumnCreateRequestSchema))
 		body: BoardColumnCreateRequest,
 	) {
-		console.log("body", body);
 		await this.boardsService.handleBoardColumnCreate(Number(id), body);
 	}
 }
