@@ -1,19 +1,24 @@
 import { Body, Controller, HttpCode, Param, Post } from "@nestjs/common";
 import { ApiBody, ApiResponse } from "@nestjs/swagger";
+import { ZodValidationPipe } from "@/_commons/pipes/zod-validation-pipe";
 import { ColumnsServices } from "./columns.services";
-import { ColumnTaskCreateRequest } from "./dto/requests/column-task-create";
+import {
+	ColumnTaskCreateRequest,
+	columnTaskCreateRequestSchema,
+} from "./dto/requests";
 
 @Controller("/columns")
 export class ColumnsControllers {
 	constructor(private columnsService: ColumnsServices) {}
 
 	@Post(":id/tasks")
-	@HttpCode(200)
-	@ApiResponse({ status: 200 })
+	@HttpCode(201)
+	@ApiResponse({ status: 201 })
 	@ApiBody({ type: ColumnTaskCreateRequest })
 	async createColumn(
 		@Param("id") id: string,
-		@Body() body: ColumnTaskCreateRequest,
+		@Body(new ZodValidationPipe(columnTaskCreateRequestSchema))
+		body: ColumnTaskCreateRequest,
 	) {
 		await this.columnsService.handleColumnTaskCreate(Number(id), body);
 	}
